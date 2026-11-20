@@ -20,7 +20,7 @@ LUFFY is a reinforcement learning framework focused on learning reasoning under 
 - LUFFY off-policy training script with prefix-sharing and off-policy loss
 - Results collection utility that aggregates benchmark scores into Excel
 
-## Complete TODO List
+### Complete TODO List
 
 - [ ] **luffy/deepscaler/utils.py:47** - Add logging for API calls and errors
 - [ ] **luffy/deepscaler/utils.py:48** - Support batch processing for multiple prompts

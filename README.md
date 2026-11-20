@@ -20,20 +20,19 @@ LUFFY is a reinforcement learning framework focused on learning reasoning under 
 - LUFFY off-policy training script with prefix-sharing and off-policy loss
 - Results collection utility that aggregates benchmark scores into Excel
 
-## TODO
+## Complete TODO List
 
-- [ ] **luffy/deepscaler/utils.py** - Implement full Gemini API integration (currently a placeholder)
-  - [ ] Implement Vertex AI initialization and authentication
-  - [ ] Configure safety settings for content generation
-  - [ ] Set up GenerativeModel with proper system instructions
-  - [ ] Implement retry logic with exponential backoff
-  - [ ] Add comprehensive error handling for API access issues
-  - [ ] Handle rate limiting and quota management
-  - [ ] Implement response validation and text extraction
-  - [ ] Add support for different generation configurations
-- [ ] **luffy/deepscaler/utils.py** - Add logging for OpenAI API calls and errors
-- [ ] **luffy/deepscaler/utils.py** - Support batch processing for multiple prompts
-- [ ] **luffy/deepscaler/utils.py** - Add timeout configuration for API calls
+- [ ] **luffy/deepscaler/utils.py:47** - Add logging for API calls and errors
+- [ ] **luffy/deepscaler/utils.py:48** - Support batch processing for multiple prompts
+- [ ] **luffy/deepscaler/utils.py:49** - Add timeout configuration for API calls
+- [ ] **luffy/deepscaler/utils.py:53** - Implement Vertex AI initialization and authentication
+- [ ] **luffy/deepscaler/utils.py:54** - Configure safety settings for content generation
+- [ ] **luffy/deepscaler/utils.py:55** - Set up GenerativeModel with proper system instructions
+- [ ] **luffy/deepscaler/utils.py:56** - Implement retry logic with exponential backoff
+- [ ] **luffy/deepscaler/utils.py:57** - Add comprehensive error handling for API access issues
+- [ ] **luffy/deepscaler/utils.py:58** - Handle rate limiting and quota management
+- [ ] **luffy/deepscaler/utils.py:59** - Implement response validation and text extraction
+- [ ] **luffy/deepscaler/utils.py:60** - Add support for different generation configurations
 
 ## Development Setup
 

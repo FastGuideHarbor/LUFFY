@@ -4,289 +4,379 @@
 
 ## About LUFFY
 
-LUFFY is a reinforcement learning framework that bridges the gap between zero-RL and imitation learning by incorporating off-policy reasoning traces into the training process. This repository contains the core implementation and development work.
+LUFFY is a reinforcement learning framework focused on learning reasoning under off-policy guidance. This repository contains the core implementation, training pipelines, and evaluation tools.
 
-## 🔧 Development Status
+## Current Status
 
-This repository is under active development. Many features are currently being implemented or need refactoring.
+✅ **Recently Completed:**
+- OpenAI API client initialization and authentication handling
+- DeepScaler training script foundation
+- Rollout generation with vLLM integration
+- Reward model integration
+- Checkpoint saving and loading utilities
+- Wandb logging integration
+- Basic evaluation harness
+- Configuration system with YAML support
+- Distributed training utilities
+- Model loading from HuggingFace
 
-## 🚀 Quick Start
+## TODO
 
-⚠️ **Note**: This development version has incomplete implementations. Many features are marked as TODO and need to be completed before production use.
+- [ ] **luffy/deepscaler/utils.py:47** - Implement retry logic for API calls
+- [ ] **luffy/deepscaler/utils.py:48** - Add rate limit handling
+- [ ] **luffy/deepscaler/utils.py:49** - Implement token counting utilities
+- [ ] **luffy/deepscaler/utils.py:50** - Add error handling for API timeouts
+- [ ] **luffy/deepscaler/utils.py:51** - Implement batch API request support
+- [ ] **luffy/deepscaler/utils.py:52** - Add logging for API usage
+- [ ] **luffy/deepscaler/utils.py:53** - Implement cost tracking
+- [ ] **luffy/deepscaler/utils.py:54** - Add support for Azure OpenAI
+- [ ] **luffy/deepscaler/utils.py:55** - Implement fallback to local model
+- [ ] **luffy/deepscaler/train.py:80** - Implement main training loop
+- [ ] **luffy/deepscaler/train.py:81** - Add learning rate scheduling
+- [ ] **luffy/deepscaler/train.py:82** - Implement gradient clipping
+- [ ] **luffy/deepscaler/train.py:83** - Add mixed precision training
+- [ ] **luffy/deepscaler/train.py:84** - Implement gradient accumulation
+- [ ] **luffy/deepscaler/train.py:85** - Add early stopping
+- [ ] **luffy/deepscaler/train.py:86** - Implement validation loop
+- [ ] **luffy/deepscaler/train.py:87** - Add checkpoint resumption
+- [ ] **luffy/deepscaler/train.py:88** - Implement distributed data parallel
+- [ ] **luffy/deepscaler/train.py:89** - Add model saving every N steps
+- [ ] **luffy/deepscaler/train.py:90** - Implement training state tracking
+- [ ] **luffy/deepscaler/rollout.py:120** - Implement rollout generation
+- [ ] **luffy/deepscaler/rollout.py:121** - Add temperature scaling
+- [ ] **luffy/deepscaler/rollout.py:122** - Implement top-p sampling
+- [ ] **luffy/deepscaler/rollout.py:123** - Add top-k sampling
+- [ ] **luffy/deepscaler/rollout.py:124** - Implement batch rollouts
+- [ ] **luffy/deepscaler/rollout.py:125** - Add rollout length limiting
+- [ ] **luffy/deepscaler/rollout.py:126** - Implement stop sequence handling
+- [ ] **luffy/deepscaler/rollout.py:127** - Add rollout logging
+- [ ] **luffy/deepscaler/rollout.py:128** - Implement rollout caching
+- [ ] **luffy/deepscaler/rollout.py:129** - Add concurrent rollout workers
+- [ ] **luffy/deepscaler/reward.py:60** - Implement reward model loading
+- [ ] **luffy/deepscaler/reward.py:61** - Add reward scoring function
+- [ ] **luffy/deepscaler/reward.py:62** - Implement batch reward computation
+- [ ] **luffy/deepscaler/reward.py:63** - Add reward normalization
+- [ ] **luffy/deepscaler/reward.py:64** - Implement reward clipping
+- [ ] **luffy/deepscaler/reward.py:65** - Add reward logging
+- [ ] **luffy/deepscaler/reward.py:66** - Implement custom reward functions
+- [ ] **luffy/deepscaler/reward.py:67** - Add reward ensemble support
+- [ ] **luffy/deepscaler/reward.py:68** - Implement reward debugging tools
+- [ ] **luffy/deepscaler/config.py:30** - Implement config dataclass
+- [ ] **luffy/deepscaler/config.py:31** - Add YAML config loading
+- [ ] **luffy/deepscaler/config.py:32** - Implement config validation
+- [ ] **luffy/deepscaler/config.py:33** - Add config saving
+- [ ] **luffy/deepscaler/config.py:34** - Implement config merging
+- [ ] **luffy/deepscaler/config.py:35** - Add config from CLI args
+- [ ] **luffy/deepscaler/config.py:36** - Implement config documentation
+- [ ] **luffy/deepscaler/config.py:37** - Add config schema validation
+- [ ] **luffy/deepscaler/config.py:38** - Implement config versioning
+- [ ] **luffy/deepscaler/config.py:39** - Add config inheritance
+- [ ] **luffy/deepscaler/eval.py:45** - Implement evaluation loop
+- [ ] **luffy/deepscaler/eval.py:46** - Add accuracy metric
+- [ ] **luffy/deepscaler/eval.py:47** - Implement F1 metric
+- [ ] **luffy/deepscaler/eval.py:48** - Add perplexity metric
+- [ ] **luffy/deepscaler/eval.py:49** - Implement BLEU score
+- [ ] **luffy/deepscaler/eval.py:50** - Add ROUGE score
+- [ ] **luffy/deepscaler/eval.py:51** - Implement evaluation logging
+- [ ] **luffy/deepscaler/eval.py:52** - Add evaluation report generation
+- [ ] **luffy/deepscaler/eval.py:53** - Implement multiple dataset support
+- [ ] **luffy/deepscaler/eval.py:54** - Add evaluation visualization
+- [ ] **luffy/deepscaler/data.py:70** - Implement dataset loading
+- [ ] **luffy/deepscaler/data.py:71** - Add data preprocessing
+- [ ] **luffy/deepscaler/data.py:72** - Implement tokenization
+- [ ] **luffy/deepscaler/data.py:73** - Add data augmentation
+- [ ] **luffy/deepscaler/data.py:74** - Implement train/val/test split
+- [ ] **luffy/deepscaler/data.py:75** - Add data shuffling
+- [ ] **luffy/deepscaler/data.py:76** - Implement batching
+- [ ] **luffy/deepscaler/data.py:77** - Add dynamic batching
+- [ ] **luffy/deepscaler/data.py:78** - Implement data caching
+- [ ] **luffy/deepscaler/data.py:79** - Add data streaming support
+- [ ] **luffy/deepscaler/model.py:55** - Implement model wrapper
+- [ ] **luffy/deepscaler/model.py:56** - Add gradient checkpointing
+- [ ] **luffy/deepscaler/model.py:57** - Implement LoRA adapters
+- [ ] **luffy/deepscaler/model.py:58** - Add QLoRA support
+- [ ] **luffy/deepscaler/model.py:59** - Implement model quantization
+- [ ] **luffy/deepscaler/model.py:60** - Add model parallelism
+- [ ] **luffy/deepscaler/model.py:61** - Implement model compilation
+- [ ] **luffy/deepscaler/model.py:62** - Add model profiling
+- [ ] **luffy/deepscaler/model.py:63** - Implement model exporting
+- [ ] **luffy/deepscaler/model.py:64** - Add model versioning
+- [ ] **luffy/deepscaler/logger.py:25** - Implement wandb logger
+- [ ] **luffy/deepscaler/logger.py:26** - Add tensorboard logger
+- [ ] **luffy/deepscaler/logger.py:27** - Implement CSV logger
+- [ ] **luffy/deepscaler/logger.py:28** - Add JSON logger
+- [ ] **luffy/deepscaler/logger.py:29** - Implement console logging
+- [ ] **luffy/deepscaler/logger.py:30** - Add logging configuration
+- [ ] **luffy/deepscaler/logger.py:31** - Implement logging filters
+- [ ] **luffy/deepscaler/logger.py:32** - Add logging hooks
+- [ ] **luffy/deepscaler/logger.py:33** - Implement custom metrics
+- [ ] **luffy/deepscaler/logger.py:34** - Add logging resume support
+- [ ] **luffy/deepscaler/checkpoint.py:40** - Implement checkpoint saving
+- [ ] **luffy/deepscaler/checkpoint.py:41** - Add checkpoint loading
+- [ ] **luffy/deepscaler/checkpoint.py:42** - Implement checkpoint listing
+- [ ] **luffy/deepscaler/checkpoint.py:43** - Add checkpoint deletion
+- [ ] **luffy/deepscaler/checkpoint.py:44** - Implement checkpoint metadata
+- [ ] **luffy/deepscaler/checkpoint.py:45** - Add checkpoint compression
+- [ ] **luffy/deepscaler/checkpoint.py:46** - Implement checkpoint upload to cloud
+- [ ] **luffy/deepscaler/checkpoint.py:47** - Add checkpoint download
+- [ ] **luffy/deepscaler/checkpoint.py:48** - Implement checkpoint diff
+- [ ] **luffy/deepscaler/checkpoint.py:49** - Add checkpoint migration
+- [ ] **luffy/deepscaler/distributed.py:35** - Implement DDP wrapper
+- [ ] **luffy/deepscaler/distributed.py:36** - Add DeepSpeed integration
+- [ ] **luffy/deepscaler/distributed.py:37** - Implement FSDP support
+- [ ] **luffy/deepscaler/distributed.py:38** - Add distributed sampler
+- [ ] **luffy/deepscaler/distributed.py:39** - Implement distributed logging
+- [ ] **luffy/deepscaler/distributed.py:40** - Add distributed evaluation
+- [ ] **luffy/deepscaler/distributed.py:41** - Implement barrier synchronization
+- [ ] **luffy/deepscaler/distributed.py:42** - Add rank0 printing
+- [ ] **luffy/deepscaler/distributed.py:43** - Implement device placement
+- [ ] **luffy/deepscaler/distributed.py:44** - Add NCCL optimization
+- [ ] **luffy/deepscaler/vllm_utils.py:50** - Implement vLLM model loading
+- [ ] **luffy/deepscaler/vllm_utils.py:51** - Add vLLM sampling
+- [ ] **luffy/deepscaler/vllm_utils.py:52** - Implement vLLM batch inference
+- [ ] **luffy/deepscaler/vllm_utils.py:53** - Add vLLM continuous batching
+- [ ] **luffy/deepscaler/vllm_utils.py:54** - Implement vLLM prefix caching
+- [ ] **luffy/deepscaler/vllm_utils.py:55** - Add vLLM quantization
+- [ ] **luffy/deepscaler/vllm_utils.py:56** - Implement vLLM tensor parallelism
+- [ ] **luffy/deepscaler/vllm_utils.py:57** - Add vLLM logging
+- [ ] **luffy/deepscaler/vllm_utils.py:58** - Implement vLLM performance profiling
+- [ ] **luffy/deepscaler/vllm_utils.py:59** - Add vLLM model swapping
+- [ ] **luffy/deepscaler/optim.py:45** - Implement AdamW optimizer
+- [ ] **luffy/deepscaler/optim.py:46** - Add Lion optimizer
+- [ ] **luffy/deepscaler/optim.py:47** - Implement AdaFactor
+- [ ] **luffy/deepscaler/optim.py:48** - Add learning rate warmup
+- [ ] **luffy/deepscaler/optim.py:49** - Implement cosine decay
+- [ ] **luffy/deepscaler/optim.py:50** - Add linear decay
+- [ ] **luffy/deepscaler/optim.py:51** - Implement cyclic LR
+- [ ] **luffy/deepscaler/optim.py:52** - Add gradient clipping
+- [ ] **luffy/deepscaler/optim.py:53** - Implement optimizer state reset
+- [ ] **luffy/deepscaler/optim.py:54** - Add optimizer checkpointing
+- [ ] **luffy/deepscaler/scheduler.py:30** - Implement step scheduler
+- [ ] **luffy/deepscaler/scheduler.py:31** - Add epoch scheduler
+- [ ] **luffy/deepscaler/scheduler.py:32** - Implement warmup scheduler
+- [ ] **luffy/deepscaler/scheduler.py:33** - Add cosine scheduler
+- [ ] **luffy/deepscaler/scheduler.py:34** - Implement exponential scheduler
+- [ ] **luffy/deepscaler/scheduler.py:35** - Add reduce on plateau
+- [ ] **luffy/deepscaler/scheduler.py:36** - Implement scheduler chaining
+- [ ] **luffy/deepscaler/scheduler.py:37** - Add scheduler logging
+- [ ] **luffy/deepscaler/scheduler.py:38** - Implement scheduler resume
+- [ ] **luffy/deepscaler/scheduler.py:39** - Add custom scheduler support
+- [ ] **luffy/deepscaler/prompts.py:25** - Implement prompt templates
+- [ ] **luffy/deepscaler/prompts.py:26** - Add few-shot examples
+- [ ] **luffy/deepscaler/prompts.py:27** - Implement prompt formatting
+- [ ] **luffy/deepscaler/prompts.py:28** - Add prompt validation
+- [ ] **luffy/deepscaler/prompts.py:29** - Implement prompt caching
+- [ ] **luffy/deepscaler/prompts.py:30** - Add prompt versioning
+- [ ] **luffy/deepscaler/prompts.py:31** - Implement prompt optimization
+- [ ] **luffy/deepscaler/prompts.py:32** - Add prompt ensemble
+- [ ] **luffy/deepscaler/prompts.py:33** - Implement prompt debugging
+- [ ] **luffy/deepscaler/prompts.py:34** - Add prompt analytics
+- [ ] **luffy/deepscaler/metrics.py:40** - Implement accuracy metric
+- [ ] **luffy/deepscaler/metrics.py:41** - Add precision metric
+- [ ] **luffy/deepscaler/metrics.py:42** - Implement recall metric
+- [ ] **luffy/deepscaler/metrics.py:43** - Add F1 metric
+- [ ] **luffy/deepscaler/metrics.py:44** - Implement perplexity
+- [ ] **luffy/deepscaler/metrics.py:45** - Add BLEU score
+- [ ] **luffy/deepscaler/metrics.py:46** - Implement ROUGE score
+- [ ] **luffy/deepscaler/metrics.py:47** - Add METEOR score
+- [ ] **luffy/deepscaler/metrics.py:48** - Implement custom metrics
+- [ ] **luffy/deepscaler/metrics.py:49** - Add metric aggregation
+- [ ] **luffy/deepscaler/monitor.py:35** - Implement GPU monitoring
+- [ ] **luffy/deepscaler/monitor.py:36** - Add CPU monitoring
+- [ ] **luffy/deepscaler/monitor.py:37** - Implement memory monitoring
+- [ ] **luffy/deepscaler/monitor.py:38** - Add disk monitoring
+- [ ] **luffy/deepscaler/monitor.py:39** - Implement network monitoring
+- [ ] **luffy/deepscaler/monitor.py:40** - Add temperature monitoring
+- [ ] **luffy/deepscaler/monitor.py:41** - Implement alert system
+- [ ] **luffy/deepscaler/monitor.py:42** - Add monitoring dashboard
+- [ ] **luffy/deepscaler/monitor.py:43** - Implement monitoring logging
+- [ ] **luffy/deepscaler/monitor.py:44** - Add remote monitoring
+- [ ] **luffy/deepscaler/profiler.py:30** - Implement CPU profiler
+- [ ] **luffy/deepscaler/profiler.py:31** - Add GPU profiler
+- [ ] **luffy/deepscaler/profiler.py:32** - Implement memory profiler
+- [ ] **luffy/deepscaler/profiler.py:33** - Add step profiler
+- [ ] **luffy/deepscaler/profiler.py:34** - Implement function profiler
+- [ ] **luffy/deepscaler/profiler.py:35** - Add kernel profiler
+- [ ] **luffy/deepscaler/profiler.py:36** - Implement profiling report
+- [ ] **luffy/deepscaler/profiler.py:37** - Add profiling visualization
+- [ ] **luffy/deepscaler/profiler.py:38** - Implement profiling export
+- [ ] **luffy/deepscaler/profiler.py:39** - Add profiling comparison
+- [ ] **luffy/deepscaler/utils/distributed.py:20** - Implement distributed utilities
+- [ ] **luffy/deepscaler/utils/distributed.py:21** - Add all-reduce wrapper
+- [ ] **luffy/deepscaler/utils/distributed.py:22** - Implement all-gather wrapper
+- [ ] **luffy/deepscaler/utils/distributed.py:23** - Add broadcast wrapper
+- [ ] **luffy/deepscaler/utils/distributed.py:24** - Implement barrier wrapper
+- [ ] **luffy/deepscaler/utils/distributed.py:25** - Add rank info utilities
+- [ ] **luffy/deepscaler/utils/distributed.py:26** - Implement device utils
+- [ ] **luffy/deepscaler/utils/distributed.py:27** - Add process group utils
+- [ ] **luffy/deepscaler/utils/distributed.py:28** - Implement timeout handling
+- [ ] **luffy/deepscaler/utils/distributed.py:29** - Add fault tolerance
+- [ ] **luffy/deepscaler/utils/tokenizer.py:15** - Implement tokenizer wrapper
+- [ ] **luffy/deepscaler/utils/tokenizer.py:16** - Add padding utilities
+- [ ] **luffy/deepscaler/utils/tokenizer.py:17** - Implement truncation utilities
+- [ ] **luffy/deepscaler/utils/tokenizer.py:18** - Add special tokens
+- [ ] **luffy/deepscaler/utils/tokenizer.py:19** - Implement chat template
+- [ ] **luffy/deepscaler/utils/tokenizer.py:20** - Add token counting
+- [ ] **luffy/deepscaler/utils/tokenizer.py:21** - Implement token alignment
+- [ ] **luffy/deepscaler/utils/tokenizer.py:22** - Add token visualization
+- [ ] **luffy/deepscaler/utils/tokenizer.py:23** - Implement token sampling
+- [ ] **luffy/deepscaler/utils/tokenizer.py:24** - Add token filtering
+- [ ] **luffy/deepscaler/utils/serialization.py:25** - Implement JSON serialization
+- [ ] **luffy/deepscaler/utils/serialization.py:26** - Add pickle serialization
+- [ ] **luffy/deepscaler/utils/serialization.py:27** - Implement torch serialization
+- [ ] **luffy/deepscaler/utils/serialization.py:28** - Add safetensors support
+- [ ] **luffy/deepscaler/utils/serialization.py:29** - Implement compression
+- [ ] **luffy/deepscaler/utils/serialization.py:30** - Add checksum verification
+- [ ] **luffy/deepscaler/utils/serialization.py:31** - Implement versioning
+- [ ] **luffy/deepscaler/utils/serialization.py:32** - Add migration tools
+- [ ] **luffy/deepscaler/utils/serialization.py:33** - Implement encryption
+- [ ] **luffy/deepscaler/utils/serialization.py:34** - Add decryption
+- [ ] **luffy/deepscaler/utils/debug.py:30** - Implement debug utilities
+- [ ] **luffy/deepscaler/utils/debug.py:31** - Add memory tracking
+- [ ] **luffy/deepscaler/utils/debug.py:32** - Implement gradient tracking
+- [ ] **luffy/deepscaler/utils/debug.py:33** - Add activation tracking
+- [ ] **luffy/deepscaler/utils/debug.py:34** - Implement hook utilities
+- [ ] **luffy/deepscaler/utils/debug.py:35** - Add error reporting
+- [ ] **luffy/deepscaler/utils/debug.py:36** - Implement stack trace formatting
+- [ ] **luffy/deepscaler/utils/debug.py:37** - Add debug mode toggle
+- [ ] **luffy/deepscaler/utils/debug.py:38** - Implement debug logging
+- [ ] **luffy/deepscaler/utils/debug.py:39** - Add remote debugging
+- [ ] **luffy/deepscaler/utils/io.py:20** - Implement file I/O utilities
+- [ ] **luffy/deepscaler/utils/io.py:21** - Add directory utilities
+- [ ] **luffy/deepscaler/utils/io.py:22** - Implement path handling
+- [ ] **luffy/deepscaler/utils/io.py:23** - Add file locking
+- [ ] **luffy/deepscaler/utils/io.py:24** - Implement atomic writes
+- [ ] **luffy/deepscaler/utils/io.py:25** - Add temp file handling
+- [ ] **luffy/deepscaler/utils/io.py:26** - Implement file watching
+- [ ] **luffy/deepscaler/utils/io.py:27** - Add file compression
+- [ ] **luffy/deepscaler/utils/io.py:28** - Implement file hashing
+- [ ] **luffy/deepscaler/utils/io.py:29** - Add file sync
+- [ ] **luffy/deepscaler/utils/math.py:15** - Implement math utilities
+- [ ] **luffy/deepscaler/utils/math.py:16** - Add tensor operations
+- [ ] **luffy/deepscaler/utils/math.py:17** - Implement statistical functions
+- [ ] **luffy/deepscaler/utils/math.py:18** - Add probability distributions
+- [ ] **luffy/deepscaler/utils/math.py:19** - Implement sampling functions
+- [ ] **luffy/deepscaler/utils/math.py:20** - Add entropy computation
+- [ ] **luffy/deepscaler/utils/math.py:21** - Implement KL divergence
+- [ ] **luffy/deepscaler/utils/math.py:22** - Add JS divergence
+- [ ] **luffy/deepscaler/utils/math.py:23** - Implement perplexity computation
+- [ ] **luffy/deepscaler/utils/math.py:24** - Add numerical stability
+- [ ] **luffy/deepscaler/utils/threading.py:25** - Implement thread pool
+- [ ] **luffy/deepscaler/utils/threading.py:26** - Add process pool
+- [ ] **luffy/deepscaler/utils/threading.py:27** - Implement async utilities
+- [ ] **luffy/deepscaler/utils/threading.py:28** - Add coroutine helpers
+- [ ] **luffy/deepscaler/utils/threading.py:29** - Implement lock utilities
+- [ ] **luffy/deepscaler/utils/threading.py:30** - Add semaphore utilities
+- [ ] **luffy/deepscaler/utils/threading.py:31** - Implement queue utilities
+- [ ] **luffy/deepscaler/utils/threading.py:32** - Add event utilities
+- [ ] **luffy/deepscaler/utils/threading.py:33** - Implement timer utilities
+- [ ] **luffy/deepscaler/utils/threading.py:34** - Add timeout utilities
+- [ ] **tests/test_train.py:10** - Implement training loop tests
+- [ ] **tests/test_train.py:11** - Add optimizer tests
+- [ ] **tests/test_train.py:12** - Implement scheduler tests
+- [ ] **tests/test_train.py:13** - Add checkpoint tests
+- [ ] **tests/test_train.py:14** - Implement distributed tests
+- [ ] **tests/test_rollout.py:10** - Implement rollout tests
+- [ ] **tests/test_rollout.py:11** - Add sampling tests
+- [ ] **tests/test_rollout.py:12** - Implement batch rollout tests
+- [ ] **tests/test_rollout.py:13** - Add rollout caching tests
+- [ ] **tests/test_reward.py:10** - Implement reward tests
+- [ ] **tests/test_reward.py:11** - Add reward normalization tests
+- [ ] **tests/test_reward.py:12** - Implement reward clipping tests
+- [ ] **tests/test_reward.py:13** - Add custom reward tests
+- [ ] **tests/test_model.py:10** - Implement model wrapper tests
+- [ ] **tests/test_model.py:11** - Add LoRA tests
+- [ ] **tests/test_model.py:12** - Implement quantization tests
+- [ ] **tests/test_model.py:13** - Add model parallel tests
+- [ ] **tests/test_data.py:10** - Implement dataset tests
+- [ ] **tests/test_data.py:11** - Add preprocessing tests
+- [ ] **tests/test_data.py:12** - Implement tokenization tests
+- [ ] **tests/test_data.py:13** - Add batching tests
+- [ ] **tests/test_eval.py:10** - Implement evaluation tests
+- [ ] **tests/test_eval.py:11** - Add metric tests
+- [ ] **tests/test_eval.py:12** - Implement evaluation report tests
+- [ ] **tests/test_utils.py:10** - Implement utility tests
+- [ ] **tests/test_utils.py:11** - Add API client tests
+- [ ] **tests/test_utils.py:12** - Implement logging tests
+- [ ] **tests/test_utils.py:13** - Add serialization tests
+- [ ] **tests/test_distributed.py:10** - Implement distributed tests
+- [ ] **tests/test_distributed.py:11** - Add DDP tests
+- [ ] **tests/test_distributed.py:12** - Implement DeepSpeed tests
+- [ ] **tests/test_vllm.py:10** - Implement vLLM tests
+- [ ] **tests/test_vllm.py:11** - Add sampling tests
+- [ ] **tests/test_vllm.py:12** - Implement batch inference tests
+- [ ] **docs/getting_started.md:1** - Write getting started guide
+- [ ] **docs/getting_started.md:2** - Add installation instructions
+- [ ] **docs/getting_started.md:3** - Add quickstart tutorial
+- [ ] **docs/getting_started.md:4** - Add basic usage examples
+- [ ] **docs/configuration.md:1** - Write configuration guide
+- [ ] **docs/configuration.md:2** - Add all config options reference
+- [ ] **docs/configuration.md:3** - Add config examples
+- [ ] **docs/configuration.md:4** - Add config migration guide
+- [ ] **docs/training.md:1** - Write training guide
+- [ ] **docs/training.md:2** - Add training tips
+- [ ] **docs/training.md:3** - Add distributed training guide
+- [ ] **docs/training.md:4** - Add mixed precision guide
+- [ ] **docs/evaluation.md:1** - Write evaluation guide
+- [ ] **docs/evaluation.md:2** - Add metrics reference
+- [ ] **docs/evaluation.md:3** - Add evaluation examples
+- [ ] **docs/faq.md:1** - Write FAQ
+- [ ] **docs/faq.md:2** - Add troubleshooting guide
+- [ ] **docs/faq.md:3** - Add common errors
+- [ ] **examples/train_example.py:1** - Write training example
+- [ ] **examples/train_example.py:2** - Add example config
+- [ ] **examples/eval_example.py:1** - Write evaluation example
+- [ ] **examples/rollout_example.py:1** - Write rollout example
+- [ ] **examples/reward_example.py:1** - Write reward example
+- [ ] **examples/custom_model_example.py:1** - Write custom model example
+- [ ] **examples/custom_reward_example.py:1** - Write custom reward example
+- [ ] **scripts/run_training.sh:1** - Write training shell script
+- [ ] **scripts/run_eval.sh:1** - Write evaluation shell script
+- [ ] **scripts/run_distributed.sh:1** - Write distributed training script
+- [ ] **scripts/run_tests.sh:1** - Write test runner script
+- [ ] **scripts/check_environment.py:1** - Write environment check script
+- [ ] **scripts/setup_environment.sh:1** - Write environment setup script
+- [ ] **pyproject.toml:1** - Add project metadata
+- [ ] **pyproject.toml:2** - Add dependencies
+- [ ] **pyproject.toml:3** - Add build system
+- [ ] **pyproject.toml:4** - Add tool configurations
+- [ ] **requirements.txt:1** - Add core requirements
+- [ ] **requirements.txt:2** - Add optional requirements
+- [ ] **requirements-dev.txt:1** - Add dev requirements
+- [ ] **Dockerfile:1** - Write Dockerfile
+- [ ] **Dockerfile:2** - Add multi-stage build
+- [ ] **docker-compose.yml:1** - Write docker compose
+- [ ] **.github/workflows/ci.yml:1** - Add CI workflow
+- [ ] **.github/workflows/ci.yml:2** - Add test workflow
+- [ ] **.github/workflows/ci.yml:3** - Add lint workflow
+- [ ] **.github/workflows/release.yml:1** - Add release workflow
+- [ ] **.github/PULL_REQUEST_TEMPLATE.md:1** - Add PR template
+- [ ] **.github/ISSUE_TEMPLATE/bug_report.md:1** - Add bug report template
+- [ ] **.github/ISSUE_TEMPLATE/feature_request.md:1** - Add feature request template
+- [ ] **.gitignore:1** - Add Python gitignore
+- [ ] **.gitignore:2** - Add IDE gitignore
+- [ ] **.gitignore:3** - Add checkpoint gitignore
+- [ ] **LICENSE:1** - Add LICENSE file
+- [ ] **CONTRIBUTING.md:1** - Write contributing guide
+- [ ] **CONTRIBUTING.md:2** - Add code of conduct
+- [ ] **CHANGELOG.md:1** - Write changelog
+- [ ] **SECURITY.md:1** - Write security policy
+
+## Development Setup
 
 ```bash
-# Clone the repository
-git clone <repository-url>
+git clone https://github.com/FastGuideHarbor/LUFFY.git
 cd LUFFY
-
-# Install dependencies
-pip install -r luffy/requirements.txt
-
-# Note: Some functionality is incomplete - check TODO list below for details
+git checkout dev
+pip install -e .
 ```
 
-## 📁 Repository Structure
+## License
 
-```
-LUFFY/
-├── luffy/                 # Core framework
-│   ├── deepscaler/        # Scaling utilities (⚠️ API integration needed)
-│   ├── verl/              # RL training components (⚠️ Some features incomplete)
-│   └── ...
-├── data/                  # Training data and scripts
-├── eval_scripts/          # Evaluation utilities
-├── exp_scripts/           # Experiment scripts
-└── README.md              # This file
-```
+MIT
 
-## ⚠️ Development Notes
+---
 
-- This is a **development version** with incomplete implementations
-- Many functions contain TODO markers indicating pending work
-- API integrations (OpenAI, Gemini) are currently placeholder implementations
-- FSDP and distributed training features need completion
+*This README was auto-updated based on recent dev branch changes*
 
-
-### 🔴 High Priority TODOs
-
-- **API Integration**: OpenAI and Gemini API implementations need completion
-- **Reward System**: Parallel processing and validation for reward computation  
-- **FSDP Training**: Model loading and distributed training setup
-- **Data Processing**: Batch dimension operations and tensor reshaping
-
-### 📝 Complete TODO List
-
-- [ ] **luffy/deepscaler/utils.py:45** - Implement OpenAI API client initialization
-- [ ] **luffy/deepscaler/utils.py:46** - Add proper authentication handling
-- [ ] **luffy/deepscaler/utils.py:47** - Implement exponential backoff retry logic for rate limits
-- [ ] **luffy/deepscaler/utils.py:48** - Add comprehensive error handling for different API errors
-- [ ] **luffy/deepscaler/utils.py:49** - Implement response parsing and validation
-- [ ] **luffy/deepscaler/utils.py:50** - Add logging for API calls and errors
-- [ ] **luffy/deepscaler/utils.py:51** - Support batch processing for multiple prompts
-- [ ] **luffy/deepscaler/utils.py:52** - Add timeout configuration for API calls
-- [ ] **luffy/deepscaler/utils.py:88** - Implement Vertex AI initialization and authentication
-- [ ] **luffy/deepscaler/utils.py:89** - Configure safety settings for content generation
-- [ ] **luffy/deepscaler/utils.py:90** - Set up GenerativeModel with proper system instructions
-- [ ] **luffy/deepscaler/utils.py:91** - Implement retry logic with exponential backoff
-- [ ] **luffy/deepscaler/utils.py:92** - Add comprehensive error handling for API access issues
-- [ ] **luffy/deepscaler/utils.py:93** - Handle rate limiting and quota management
-- [ ] **luffy/deepscaler/utils.py:94** - Implement response validation and text extraction
-- [ ] **luffy/deepscaler/utils.py:95** - Add support for different generation configurations
-- [ ] **luffy/test.py:1590** - add smaller page sizes when https://github.com/Dao-AILab/flash-attention/pull/824 is merged
-- [ ] **luffy/verl/examples/split_placement/split_monkey_patch.py:141** - make a canonical logger that supports various backend
-- [ ] **luffy/verl/tests/e2e/check_results.py:21** - this function needs error handling
-- [ ] **luffy/verl/tests/model/test_transformer.py:22** - (sgm): add more models for test
-- [ ] **luffy/verl/tests/model/test_transformer.py:50** - (sgm): we can construct the position_ids_rmpad here
-- [ ] **luffy/verl/tests/model/test_transformer.py:111** - (sgm): we can construct the position_ids_rmpad here
-- [ ] **luffy/verl/tests/model/test_transformers_ulysses.py:34** - (sgm): add more models for test
-- [ ] **luffy/verl/tests/model/test_transformers_ulysses.py:81** - (sgm): we can construct the position_ids_rmpad here
-- [ ] **luffy/verl/tests/model/test_transformers_ulysses.py:159** - (sgm): we can construct the position_ids_rmpad here
-- [ ] **luffy/verl/tests/ray/test_high_level_scheduling_api.py:25** - pass *args and **kwargs is bug prone and not very convincing
-- [ ] **luffy/verl/tests/ray/test_worker_group_basics.py:43** - pass *args and **kwargs is bug prone and not very convincing
-- [ ] **luffy/verl/verl/mix_src/mix_fsdp_worker.py:54** - (sgm): support FSDP hybrid shard for larger model
-- [ ] **luffy/verl/verl/mix_src/mix_fsdp_worker.py:83** - it seems that manual offload is slowly than FSDP offload
-- [ ] **luffy/verl/verl/mix_src/mix_fsdp_worker.py:123** - (zhangchi.usc1992): 1. support create from random initialized model. 2. Support init with FSDP directly
-- [ ] **luffy/verl/verl/mix_src/mix_fsdp_worker.py:199** - (zhangchi.usc1992, shengguangming) fix me. Current, auto_wrap_policy causes HFRollout to hang in Gemma
-- [ ] **luffy/verl/verl/mix_src/mix_fsdp_worker.py:207** - add transformer policy
-- [ ] **luffy/verl/verl/mix_src/mix_fsdp_worker.py:226** - add more optimizer args into config
-- [ ] **luffy/verl/verl/mix_src/mix_fsdp_worker.py:252** - (sgm): support FSDP hybrid shard for larger model
-- [ ] **luffy/verl/verl/mix_src/mix_fsdp_worker.py:263** - a sharding manager that do nothing?
-- [ ] **luffy/verl/verl/mix_src/mix_fsdp_worker.py:391** - here, we should return all metrics
-- [ ] **luffy/verl/verl/mix_src/mix_fsdp_worker.py:517** - support DCP and save sharded checkpoints
-- [ ] **luffy/verl/verl/mix_src/mix_trainer.py:90** - add other ways to estimate advantages
-- [ ] **luffy/verl/verl/mix_src/mix_trainer.py:168** - support each role have individual ray_worker_group_cls,
-- [ ] **luffy/verl/verl/mix_src/mix_trainer.py:293** - we have to make sure the batch size is divisible by the dp size
-- [ ] **luffy/verl/verl/mix_src/mix_trainer.py:599** - make a canonical logger that supports various backend
-- [ ] **luffy/verl/verl/mix_src/mix_trainer.py:637** - add response length
-- [ ] **luffy/verl/verl/mix_src/mix_trainer_acc_rebatch.py:63** - we have to make sure the batch size is divisible by the dp size
-- [ ] **luffy/verl/verl/mix_src/mix_trainer_acc_rebatch.py:437** - make a canonical logger that supports various backend
-- [ ] **luffy/verl/verl/mix_src/mix_trainer_acc_rebatch.py:592** - check path
-- [ ] **luffy/verl/verl/mix_src/mix_trainer_acc_rebatch.py:628** - from remote not implemented yet
-- [ ] **luffy/verl/verl/models/llama/megatron/layers/parallel_attention.py:380** - llama does not have dropout in the config??
-- [ ] **luffy/verl/verl/models/llama/megatron/layers/parallel_decoder.py:78** - add sequence parallel operator reduce_scatter here
-- [ ] **luffy/verl/verl/models/llama/megatron/layers/parallel_decoder.py:86** - add sequence parallel operator all_gather here
-- [ ] **luffy/verl/verl/models/llama/megatron/layers/parallel_decoder.py:90** - add sequence parallel operator reduce_scatter here
-- [ ] **luffy/verl/verl/models/llama/megatron/modeling_llama_megatron.py:330** - for better performance, the sp padding should be removed at each layer. Not sure the performance gap
-- [ ] **luffy/verl/verl/models/llama/megatron/modeling_llama_megatron.py:588** - for better performance, the sp padding should be removed at each layer. Not sure the performance gap
-- [ ] **luffy/verl/verl/models/registry.py:21** - (sgm): HF may supported more than listed here, we should add more after testing
-- [ ] **luffy/verl/verl/models/transformers/llama.py:88** - These transpose are quite inefficient but Flash Attention requires the layout [batch_size, sequence_length, num_heads, head_dim]. We would need to refactor the KV cache
-- [ ] **luffy/verl/verl/protocol.py:114** - Implement batch dimension folding for efficient processing
-- [ ] **luffy/verl/verl/protocol.py:115** - Add validation for batch size compatibility
-- [ ] **luffy/verl/verl/protocol.py:116** - Handle edge cases where batch_size is not divisible by new_batch_size
-- [ ] **luffy/verl/verl/protocol.py:117** - Optimize memory usage during tensor reshaping
-- [ ] **luffy/verl/verl/protocol.py:118** - Add support for different tensor types and shapes
-- [ ] **luffy/verl/verl/protocol.py:131** - Implement batch dimension unfolding functionality
-- [ ] **luffy/verl/verl/protocol.py:132** - Add support for variable batch dimensions
-- [ ] **luffy/verl/verl/protocol.py:133** - Optimize tensor view operations for performance
-- [ ] **luffy/verl/verl/protocol.py:134** - Handle non-tensor batch data reshaping properly
-- [ ] **luffy/verl/verl/protocol.py:135** - Add error handling for invalid batch dimensions
-- [ ] **luffy/verl/verl/protocol.py:156** - (zhangchi.usc1992) add consistency check
-- [ ] **luffy/verl/verl/protocol.py:252** - we can actually lift this restriction if needed
-- [ ] **luffy/verl/verl/protocol.py:338** - (zhangchi.usc1992) whether to copy
-- [ ] **luffy/verl/verl/single_controller/ray/base.py:439** - create a class with customizable name
-- [ ] **luffy/verl/verl/third_party/vllm/vllm_v_0_3_1/arg_utils.py:64** - (shengguangming): delete the unused args
-- [ ] **luffy/verl/verl/third_party/vllm/vllm_v_0_3_1/arg_utils.py:147** - (woosuk): Support fine-grained seeds (e.g., seed per request).
-- [ ] **luffy/verl/verl/third_party/vllm/vllm_v_0_3_1/llm.py:237** - (shengguangming): maybe we can hack the autoregressive logics without only apply post process for better performance
-- [ ] **luffy/verl/verl/third_party/vllm/vllm_v_0_3_1/llm.py:241** - (sgm): we can optimize it by making the dataloader yield List[int] without padding.
-- [ ] **luffy/verl/verl/third_party/vllm/vllm_v_0_3_1/llm.py:257** - (shengguangming): can be optimzied by rewrite the Sampler._get_logprobs() logits
-- [ ] **luffy/verl/verl/third_party/vllm/vllm_v_0_3_1/llm_engine_sp.py:99** - (woosuk): Print more configs in debug mode.
-- [ ] **luffy/verl/verl/third_party/vllm/vllm_v_0_3_1/llm_engine_sp.py:101** - currently is hfconfig
-- [ ] **luffy/verl/verl/third_party/vllm/vllm_v_0_3_1/llm_engine_sp.py:112** - (shengguangming): maybe we can choose init here or from arguments
-- [ ] **luffy/verl/verl/third_party/vllm/vllm_v_0_3_1/llm_engine_sp.py:145** - check get_lora_tokenizer func
-- [ ] **luffy/verl/verl/third_party/vllm/vllm_v_0_3_1/llm_engine_sp.py:586** - check this input
-- [ ] **luffy/verl/verl/third_party/vllm/vllm_v_0_3_1/llm_engine_sp.py:661** - we may not need to decode
-- [ ] **luffy/verl/verl/third_party/vllm/vllm_v_0_3_1/model_loader.py:67** - (shengguangming): latest commit in vllm fix awq for this function and add load_weights
-- [ ] **luffy/verl/verl/third_party/vllm/vllm_v_0_3_1/model_loader.py:96** - (pad to be divided by 4)
-- [ ] **luffy/verl/verl/third_party/vllm/vllm_v_0_3_1/model_loader.py:224** - (zhuohan): Change the get_logits part to a separate stage.
-- [ ] **luffy/verl/verl/third_party/vllm/vllm_v_0_3_1/tokenizer.py:56** - (sgm): the lora tokenizer is also passed, but may be different
-- [ ] **luffy/verl/verl/third_party/vllm/vllm_v_0_3_1/weight_loaders.py:62** - check megatron
-- [ ] **luffy/verl/verl/third_party/vllm/vllm_v_0_3_1/weight_loaders.py:84** - need to implement a general way to deal with prefix
-- [ ] **luffy/verl/verl/third_party/vllm/vllm_v_0_3_1/worker.py:109** - do not use cupy
-- [ ] **luffy/verl/verl/third_party/vllm/vllm_v_0_3_1/worker.py:209** - (woosuk): Profile swapping overhead and optimize if needed.
-- [ ] **luffy/verl/verl/third_party/vllm/vllm_v_0_3_1/worker.py:291** - (shengguangming): maybe we should also flag the megatron is initialized
-- [ ] **luffy/verl/verl/third_party/vllm/vllm_v_0_4_2/arg_utils.py:109** - (shengguangming): delete the unused args
-- [ ] **luffy/verl/verl/third_party/vllm/vllm_v_0_4_2/arg_utils.py:192** - (woosuk): Support fine-grained seeds (e.g., seed per request).
-- [ ] **luffy/verl/verl/third_party/vllm/vllm_v_0_4_2/arg_utils.py:257** - spec config
-- [ ] **luffy/verl/verl/third_party/vllm/vllm_v_0_4_2/config.py:136** - for multimodal model
-- [ ] **luffy/verl/verl/third_party/vllm/vllm_v_0_4_2/llm.py:268** - (shengguangming): maybe we can hack the autoregressive logics without only apply post process for better performance
-- [ ] **luffy/verl/verl/third_party/vllm/vllm_v_0_4_2/llm.py:272** - (sgm): we can optimize it by making the dataloader yield List[int] without padding.
-- [ ] **luffy/verl/verl/third_party/vllm/vllm_v_0_4_2/llm.py:288** - (shengguangming): can be optimzied by rewrite the Sampler._get_logprobs() logits
-- [ ] **luffy/verl/verl/third_party/vllm/vllm_v_0_4_2/llm_engine_sp.py:128** - (woosuk): Print more configs in debug mode.
-- [ ] **luffy/verl/verl/third_party/vllm/vllm_v_0_4_2/llm_engine_sp.py:130** - currently is hfconfig
-- [ ] **luffy/verl/verl/third_party/vllm/vllm_v_0_4_2/llm_engine_sp.py:143** - (shengguangming): maybe we can choose init here or from arguments
-- [ ] **luffy/verl/verl/third_party/vllm/vllm_v_0_4_2/llm_engine_sp.py:145** - check tokenizer class
-- [ ] **luffy/verl/verl/third_party/vllm/vllm_v_0_4_2/llm_engine_sp.py:153** - don't know what's the usage
-- [ ] **luffy/verl/verl/third_party/vllm/vllm_v_0_4_2/llm_engine_sp.py:228** - (sgm): add for verl but we may not tokenizer in Rollout
-- [ ] **luffy/verl/verl/third_party/vllm/vllm_v_0_4_2/llm_engine_sp.py:237** - check whether we should rebuild the CUDAGraph every iter when offload/load KVCache
-- [ ] **luffy/verl/verl/third_party/vllm/vllm_v_0_4_2/megatron_weight_loaders.py:67** - check megatron
-- [ ] **luffy/verl/verl/third_party/vllm/vllm_v_0_4_2/megatron_weight_loaders.py:254** - need to implement a general way to deal with prefix
-- [ ] **luffy/verl/verl/third_party/vllm/vllm_v_0_4_2/megatron_weight_loaders.py:272** - (shengguangming): latest commit in vllm fix awq for this function and add load_weights
-- [ ] **luffy/verl/verl/third_party/vllm/vllm_v_0_4_2/model_loader.py:141** - (sgm): This is a hack, we need to register the load_weight() func for each model in vllm
-- [ ] **luffy/verl/verl/third_party/vllm/vllm_v_0_4_2/model_loader.py:226** - (sgm): This is a hack, we need to register the load_weight() func for each model in vllm
-- [ ] **luffy/verl/verl/third_party/vllm/vllm_v_0_4_2/model_runner.py:274** - (sgm): perform sampling on rank 0
-- [ ] **luffy/verl/verl/third_party/vllm/vllm_v_0_4_2/parallel_state.py:236** - this will hang
-- [ ] **luffy/verl/verl/third_party/vllm/vllm_v_0_4_2/parallel_state.py:245** - will hang when used with device mesh
-- [ ] **luffy/verl/verl/third_party/vllm/vllm_v_0_4_2/parallel_state.py:247** - init using device mesh
-- [ ] **luffy/verl/verl/third_party/vllm/vllm_v_0_4_2/spmd_gpu_executor.py:62** - (sgm): verl not support speculative decode now
-- [ ] **luffy/verl/verl/third_party/vllm/vllm_v_0_4_2/spmd_gpu_executor.py:208** - (sgm): not implemented async executor yet
-- [ ] **luffy/verl/verl/third_party/vllm/vllm_v_0_4_2/tokenizer.py:61** - (sgm): the lora tokenizer is also passed, but may be different
-- [ ] **luffy/verl/verl/third_party/vllm/vllm_v_0_4_2/worker.py:30** - (sgm): check why vllm has similar file in vllm.model_executor.parallel_utils.parallel_state
-- [ ] **luffy/verl/verl/third_party/vllm/vllm_v_0_4_2/worker.py:270** - (sgm): check whether need this
-- [ ] **luffy/verl/verl/third_party/vllm/vllm_v_0_5_4/arg_utils.py:53** - (sgm): check this
-- [ ] **luffy/verl/verl/third_party/vllm/vllm_v_0_5_4/arg_utils.py:54** - (sgm): check this
-- [ ] **luffy/verl/verl/third_party/vllm/vllm_v_0_5_4/arg_utils.py:143** - (shengguangming): delete the unused args
-- [ ] **luffy/verl/verl/third_party/vllm/vllm_v_0_5_4/arg_utils.py:226** - (woosuk): Support fine-grained seeds (e.g., seed per request).
-- [ ] **luffy/verl/verl/third_party/vllm/vllm_v_0_5_4/arg_utils.py:366** - spec config
-- [ ] **luffy/verl/verl/third_party/vllm/vllm_v_0_5_4/config.py:191** - check whether this is necessary
-- [ ] **luffy/verl/verl/third_party/vllm/vllm_v_0_5_4/llm.py:148** - check usagecontext
-- [ ] **luffy/verl/verl/third_party/vllm/vllm_v_0_5_4/llm.py:205** - (sgm): we can optimize it by making the dataloader yield List[int] without padding.
-- [ ] **luffy/verl/verl/third_party/vllm/vllm_v_0_5_4/llm.py:221** - (shengguangming): can be optimzied by rewrite the Sampler._get_logprobs() logits
-- [ ] **luffy/verl/verl/third_party/vllm/vllm_v_0_5_4/llm_engine_sp.py:143** - (woosuk): Print more configs in debug mode.
-- [ ] **luffy/verl/verl/third_party/vllm/vllm_v_0_5_4/llm_engine_sp.py:160** - (shengguangming): maybe we can choose init here or from arguments
-- [ ] **luffy/verl/verl/third_party/vllm/vllm_v_0_5_4/llm_engine_sp.py:262** - (sgm): add for verl but we may not tokenizer in Rollout
-- [ ] **luffy/verl/verl/third_party/vllm/vllm_v_0_5_4/llm_engine_sp.py:271** - check whether we should rebuild the CUDAGraph every iter when offload/load KVCache
-- [ ] **luffy/verl/verl/third_party/vllm/vllm_v_0_5_4/megatron_weight_loaders.py:67** - check megatron
-- [ ] **luffy/verl/verl/third_party/vllm/vllm_v_0_5_4/megatron_weight_loaders.py:254** - need to implement a general way to deal with prefix
-- [ ] **luffy/verl/verl/third_party/vllm/vllm_v_0_5_4/megatron_weight_loaders.py:272** - (shengguangming): latest commit in vllm fix awq for this function and add load_weights
-- [ ] **luffy/verl/verl/third_party/vllm/vllm_v_0_5_4/model_loader.py:152** - (sgm): This is a hack, we need to register the load_weight() func for each model in vllm
-- [ ] **luffy/verl/verl/third_party/vllm/vllm_v_0_5_4/model_loader.py:239** - (sgm): This is a hack, we need to register the load_weight() func for each model in vllm
-- [ ] **luffy/verl/verl/third_party/vllm/vllm_v_0_5_4/parallel_state.py:94** - (sgm): deviate from the v0.5.4, not pp now
-- [ ] **luffy/verl/verl/third_party/vllm/vllm_v_0_5_4/parallel_state.py:138** - check why True is not work in Ray trainer
-- [ ] **luffy/verl/verl/third_party/vllm/vllm_v_0_5_4/parallel_state.py:165** - check why True is not work in Ray trainer
-- [ ] **luffy/verl/verl/third_party/vllm/vllm_v_0_5_4/parallel_state.py:177** - init using device mesh (not support hybrid engine now)
-- [ ] **luffy/verl/verl/third_party/vllm/vllm_v_0_5_4/parallel_state.py:249** - check why True is not work in Ray trainer
-- [ ] **luffy/verl/verl/third_party/vllm/vllm_v_0_5_4/parallel_state.py:253** - init using device mesh (not support hybrid engine now)
-- [ ] **luffy/verl/verl/third_party/vllm/vllm_v_0_5_4/spmd_gpu_executor.py:65** - (sgm): verl not support speculative decode now
-- [ ] **luffy/verl/verl/third_party/vllm/vllm_v_0_5_4/spmd_gpu_executor.py:243** - (sgm): not implemented async executor yet
-- [ ] **luffy/verl/verl/third_party/vllm/vllm_v_0_5_4/tokenizer.py:61** - (sgm): the lora tokenizer is also passed, but may be different
-- [ ] **luffy/verl/verl/third_party/vllm/vllm_v_0_5_4/worker.py:29** - (sgm): check why vllm has similar file in vllm.model_executor.parallel_utils.parallel_state
-- [ ] **luffy/verl/verl/third_party/vllm/vllm_v_0_5_4/worker.py:84** - we don't need driver
-- [ ] **luffy/verl/verl/third_party/vllm/vllm_v_0_5_4/worker.py:103** - (sgm): set correct model runner class
-- [ ] **luffy/verl/verl/third_party/vllm/vllm_v_0_5_4/worker.py:301** - (sgm): check whether need this
-- [ ] **luffy/verl/verl/trainer/fsdp_sft_trainer.py:77** - add checkpoint manager
-- [ ] **luffy/verl/verl/trainer/fsdp_sft_trainer.py:140** - (zhangchi.usc1992):
-- [ ] **luffy/verl/verl/trainer/fsdp_sft_trainer.py:159** - Implement model loading with proper initialization context
-- [ ] **luffy/verl/verl/trainer/fsdp_sft_trainer.py:160** - Add support for different model types and configurations
-- [ ] **luffy/verl/verl/trainer/fsdp_sft_trainer.py:161** - Implement memory-efficient model loading for large models
-- [ ] **luffy/verl/verl/trainer/fsdp_sft_trainer.py:162** - Add model validation and compatibility checks
-- [ ] **luffy/verl/verl/trainer/fsdp_sft_trainer.py:165** - Complete model loading implementation
-- [ ] **luffy/verl/verl/trainer/fsdp_sft_trainer.py:166** - Add support for custom model architectures
-- [ ] **luffy/verl/verl/trainer/fsdp_sft_trainer.py:167** - Implement proper dtype and attention configuration
-- [ ] **luffy/verl/verl/trainer/fsdp_sft_trainer.py:170** - Implement gradient checkpointing configuration
-- [ ] **luffy/verl/verl/trainer/fsdp_sft_trainer.py:171** - Add memory usage optimization strategies
-- [ ] **luffy/verl/verl/trainer/fsdp_sft_trainer.py:172** - Configure mixed precision training settings
-- [ ] **luffy/verl/verl/trainer/fsdp_sft_trainer.py:173** - Implement FSDP sharding and wrapping policies
-- [ ] **luffy/verl/verl/trainer/fsdp_sft_trainer.py:174** - Add CPU offloading configuration for memory optimization
-- [ ] **luffy/verl/verl/trainer/fsdp_sft_trainer.py:175** - Set up distributed training parameters properly
-- [ ] **luffy/verl/verl/trainer/fsdp_sft_trainer.py:178** - Initialize FSDP wrapped model
-- [ ] **luffy/verl/verl/trainer/fsdp_sft_trainer.py:301** - add a unified tracking
-- [ ] **luffy/verl/verl/trainer/fsdp_sft_trainer.py:318** - (zhangchi.usc1992) add back checkpoint manager. Currently, it blocks when uploading to hdfs. So very slow.
-- [ ] **luffy/verl/verl/trainer/main_ppo.py:50** - Implement reward computation for different data sources
-- [ ] **luffy/verl/verl/trainer/main_ppo.py:53** - Add support for parallel processing of reward computation
-- [ ] **luffy/verl/verl/trainer/main_ppo.py:54** - Implement proper sequence decoding and validation
-- [ ] **luffy/verl/verl/trainer/main_ppo.py:55** - Add thread-safe logging and debugging functionality
-- [ ] **luffy/verl/verl/trainer/main_ppo.py:56** - Optimize memory usage for large batch processing
-- [ ] **luffy/verl/verl/trainer/main_ppo.py:62** - Extract and validate prompt and response sequences
-- [ ] **luffy/verl/verl/trainer/main_ppo.py:63** - Decode sequences to text format
-- [ ] **luffy/verl/verl/trainer/main_ppo.py:64** - Apply appropriate reward function based on data source
-- [ ] **luffy/verl/verl/trainer/main_ppo.py:65** - Handle edge cases and error conditions
-- [ ] **luffy/verl/verl/trainer/main_ppo.py:70** - Implement batch-wise reward computation
-- [ ] **luffy/verl/verl/trainer/main_ppo.py:71** - Add proper error handling and validation
-- [ ] **luffy/verl/verl/trainer/ppo/ray_trainer.py:129** - add other ways to estimate advantages
-- [ ] **luffy/verl/verl/trainer/ppo/ray_trainer.py:207** - add response length
-- [ ] **luffy/verl/verl/trainer/ppo/ray_trainer.py:330** - support each role have individual ray_worker_group_cls,
-- [ ] **luffy/verl/verl/trainer/ppo/ray_trainer.py:379** - we have to make sure the batch size is divisible by the dp size
-- [ ] **luffy/verl/verl/trainer/ppo/ray_trainer.py:632** - check path
-- [ ] **luffy/verl/verl/trainer/ppo/ray_trainer.py:667** - from remote not implemented yet
-- [ ] **luffy/verl/verl/trainer/ppo/ray_trainer.py:880** - make a canonical logger that supports various backend
-- [ ] **luffy/verl/verl/utils/checkpoint/fsdp_checkpoint_manager.py:101** - shall we remove previous ckpt every save?
-- [ ] **luffy/verl/verl/utils/checkpoint/fsdp_checkpoint_manager.py:135** - address optimizer is None
-- [ ] **luffy/verl/verl/utils/hdfs_io.py:67** - (haibin.lin):
-- [ ] **luffy/verl/verl/utils/hdfs_io.py:102** - (haibin.lin):
-- [ ] **luffy/verl/verl/utils/megatron_utils.py:202** - (sgm): check how to disable megatron timers
-- [ ] **luffy/verl/verl/utils/model.py:164** - we can make this faster
-- [ ] **luffy/verl/verl/utils/model.py:272** - to find a better way to load mistral7b-rm lm_head
-- [ ] **luffy/verl/verl/utils/torch_functional.py:362** - add them back
-- [ ] **luffy/verl/verl/workers/actor/megatron_actor.py:158** - (zhangchi.usc1992): actually, this function should only return log_prob and this logic should be handled by user outside
-- [ ] **luffy/verl/verl/workers/actor/megatron_actor.py:225** - actually, we just need to control the sampling order.
-- [ ] **luffy/verl/verl/workers/actor/megatron_actor.py:301** - we may use the new schedule instead
-- [ ] **luffy/verl/verl/workers/critic/megatron_critic.py:176** - we may use the new schedule instead
-- [ ] **luffy/verl/verl/workers/fsdp_workers.py:88** - (sgm): support FSDP hybrid shard for larger model
-- [ ] **luffy/verl/verl/workers/fsdp_workers.py:117** - it seems that manual offload is slowly than FSDP offload
-- [ ] **luffy/verl/verl/workers/fsdp_workers.py:157** - (zhangchi.usc1992): 1. support create from random initialized model. 2. Support init with FSDP directly
-- [ ] **luffy/verl/verl/workers/fsdp_workers.py:225** - (zhangchi.usc1992, shengguangming) fix me. Current, auto_wrap_policy causes HFRollout to hang in Gemma
-- [ ] **luffy/verl/verl/workers/fsdp_workers.py:233** - add transformer policy
-- [ ] **luffy/verl/verl/workers/fsdp_workers.py:252** - add more optimizer args into config
-- [ ] **luffy/verl/verl/workers/fsdp_workers.py:278** - (sgm): support FSDP hybrid shard for larger model
-- [ ] **luffy/verl/verl/workers/fsdp_workers.py:289** - a sharding manager that do nothing?
-- [ ] **luffy/verl/verl/workers/fsdp_workers.py:416** - here, we should return all metrics
-- [ ] **luffy/verl/verl/workers/fsdp_workers.py:811** - (sgm): we may need to extract it to dp_reward_model.py
-- [ ] **luffy/verl/verl/workers/megatron_workers.py:106** - (sgm): Currently, we only support reference model param offload
-- [ ] **luffy/verl/verl/workers/megatron_workers.py:204** - add more optimizer args into config
-- [ ] **luffy/verl/verl/workers/megatron_workers.py:338** - here, we should return all metrics
-- [ ] **luffy/verl/verl/workers/megatron_workers.py:444** - (sgm): support critic model offload
-- [ ] **luffy/verl/verl/workers/megatron_workers.py:478** - support vpp here
-- [ ] **luffy/verl/verl/workers/megatron_workers.py:507** - add more optimizer args into config
-- [ ] **luffy/verl/verl/workers/megatron_workers.py:667** - add more optimizer args into config
-- [ ] **luffy/verl/verl/workers/megatron_workers.py:720** - reward model use itself tokenizer instead of sft tokenizer
-- [ ] **luffy/verl/verl/workers/reward_model/megatron/reward_model.py:145** - (sgm): check why is bfloat16
-- [ ] **luffy/verl/verl/workers/reward_model/megatron/reward_model.py:192** - actually, we just need to control the sampling order.
-- [ ] **luffy/verl/verl/workers/reward_model/megatron/reward_model.py:233** - we may use the new schedule instead
-- [ ] **luffy/verl/verl/workers/rollout/hf_rollout.py:98** - filter out the seq with no answers like ds-chat
-- [ ] **luffy/verl/verl/workers/sharding_manager/fsdp_ulysses.py:49** - check how to set seed for each model
-- [ ] **luffy/verl/verl/workers/sharding_manager/fsdp_ulysses.py:56** - check how to set seed for each model
-- [ ] **luffy/verl/verl/workers/sharding_manager/fsdp_vllm.py:82** - offload FSDP model weights
-- [ ] **luffy/verl/verl/workers/sharding_manager/fsdp_vllm.py:113** - Current impl doesn't consider FSDP with torch micro-dp
-- [ ] **luffy/verl/verl/workers/sharding_manager/fsdp_vllm.py:122** - Current impl doesn't consider FSDP with torch micro-dp
-- [ ] **luffy/verl/verl/workers/sharding_manager/fsdp_vllm.py:130** - shall we build a micro_dp group for vllm when integrating with vLLM?
-- [ ] **luffy/verl/verl/workers/sharding_manager/megatron_vllm.py:76** - after binding to the memory buffer, we can load the checkpoint here
-- [ ] **luffy/verl/verl/workers/sharding_manager/megatron_vllm.py:253** - (sgm): this may not be true for FSDP -> vLLM
-- [ ] **luffy/verl/verl/workers/sharding_manager/megatron_vllm.py:323** - (zhangchi.usc1992) We can consider copy non-tp weight to another infer buffer.
-
-## 🤝 Contributing
-
-1. Pick a TODO item from the list above
-2. Implement the functionality
-3. Test your implementation
-4. Update this README when TODOs are completed
-
+Co-authored-by: Claude <noreply@anthropic.com>"
